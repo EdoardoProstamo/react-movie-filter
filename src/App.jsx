@@ -3,23 +3,32 @@ import dataMovies from './data/movies'
 
 function App() {
 
+  const [movies, setMovies] = useState(dataMovies);
+  const [searchGenre, setSearchGenre] = useState('');
+
+  const findMovies = movies.filter(movie => {
+    if (searchGenre === '') return true;
+    return movie.genre === searchGenre;
+  })
+
   return (
     <>
       <h1>Film disponibili:</h1>
 
       <ul>
-        {dataMovies.map((movie, index) => <li key={index}>
+        {findMovies.map((movie, index) => <li key={index}>
           {movie.title} {'->'} {movie.genre}
         </li>)}
       </ul>
 
-      <select>
+      <select value={searchGenre} onChange={e => setSearchGenre(e.target.value)}>
         <option value="">Nessuno</option>
         <option value="Fantascienza">Fantascienza</option>
         <option value="Thriller">Thriller</option>
         <option value="Romantico">Romantico</option>
         <option value="Azione">Azione</option>
       </select>
+
     </>
   )
 }
