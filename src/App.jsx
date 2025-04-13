@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import dataMovies from './data/movies'
 
 function App() {
@@ -10,6 +10,12 @@ function App() {
     if (searchGenre === '') return true;
     return movie.genre === searchGenre;
   })
+
+  // useEffect(() => {
+  //   let movies = dataMovies;
+  //   if (searchGenre !== '') { movies = movies.filter(movie => movie.genre === searchGenre); }
+  //   setMovies(movies);
+  // }, [searchGenre]);
 
   return (
     <>
